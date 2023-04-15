@@ -63,6 +63,7 @@ class DynamicArray:
         :return: None
         """
         self._data[self._size] = value
+        self._size += 1
         return
 
     def insert(self, index):
