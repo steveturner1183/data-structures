@@ -1,6 +1,6 @@
 class DynamicArray:
     """
-    Implementation of dynamic array with add, insert, remove, and delete
+    Implementation of dynamic array with add, insert, remove, delete, slice
     methods
     """
     def __init__(self, initial_capacity):
@@ -39,9 +39,21 @@ class DynamicArray:
         if self._size == self._capacity:
             self._grow_array()
 
+    def _check_bounds(self, indices):
+        for index in indices:
+            if index not in range(0, self._capacity):
+                raise Exception("Index out of bounds")
+
     ###########################################################################
     # Public Dynamic Array Functions
     ###########################################################################
+    def get_size(self):
+        """
+        Get the total elements in array
+        :return: total nuber of elements
+        """
+        return self._size
+
     def get_arr(self):
         """
         Retrieve the entire array
@@ -119,6 +131,13 @@ class DynamicArray:
         self._size -= 1
         return
 
-if __name__ == "__main__":
-    da = DynamicArray(2)
-    da.set(5, 5)
+    def slice(self, start, end):
+        """
+        Slices the array of given indices
+        :param start: Start index
+        :param end: End Index
+        :return: Slice of array between start and end index
+        """
+        self._check_bounds([start, end])
+        return [self._data[i] for i in range(start, end+1)]
+
