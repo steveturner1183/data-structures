@@ -12,13 +12,15 @@ class DynamicArray:
     # Private Helper Functions
     ###########################################################################
 
-    def _copy_contents(self, arr):
+    def _copy_contents(self):
         """
         Copies the contents of self._data to a new array
-        :param arr: Empty array
         :return: Array with copied contents
         """
-        pass
+        temp_array = [0] * self._capacity * 2
+        for index in range(0, self._size):
+            temp_array[index] = self._data[index]
+        return temp_array
 
     def _grow_array(self):
         """
@@ -26,7 +28,16 @@ class DynamicArray:
         data from self._data array
         :return: None
         """
-        pass
+        self._data = self._copy_contents()
+        self._capacity *= 2
+
+    def _check_capacity(self):
+        """
+        Checks capacity, and grows array if needed
+        :return: None
+        """
+        if self._size == self._capacity:
+            self._grow_array()
 
     ###########################################################################
     # Public Dynamic Array Functions
@@ -62,6 +73,7 @@ class DynamicArray:
         :param value: Value to be appended
         :return: None
         """
+        self._check_capacity()
         self._data[self._size] = value
         self._size += 1
         return
