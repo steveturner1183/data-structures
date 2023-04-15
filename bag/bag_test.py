@@ -12,6 +12,16 @@ class TestDynamicArray(unittest.TestCase):
         actual = test_bag.get_bag()
         self.assertEqual(expected, actual)
 
+    def test_clear(self):
+        test_bag = Bag(initial_capacity=4)
+        test_bag.add(3)
+        test_bag.add(1)
+        test_bag.add(2)
+        test_bag.clear()
+        expected = [0, 0, 0, 0]
+        actual = test_bag.get_bag()
+        self.assertEqual(expected, actual)
+
 
 if __name__ == "__main__":
     unittest.main()
