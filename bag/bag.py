@@ -65,3 +65,13 @@ class Bag:
         :return: Item count
         """
         return self._bag.get_size()
+
+    def clear(self):
+        """
+        Remove all items from bag
+        :return: None
+        """
+        bag_size = self._bag.get_size()
+
+        for item in range(0, bag_size):
+            self._bag.set(item, 0)
