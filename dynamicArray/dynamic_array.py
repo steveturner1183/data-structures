@@ -111,4 +111,10 @@ class DynamicArray:
         :param index:
         :return: None
         """
-        pass
+        # Shift elements
+        for i in range(index, self._size):
+            self._data[i] = self._data[i+1]
+
+        self._data[self._size] = 0
+        self._size -= 1
+        return
