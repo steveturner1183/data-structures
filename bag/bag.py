@@ -58,3 +58,10 @@ class Bag:
             self._bag.delete(search_index)
         else:
             raise Exception("Value not in bag")
+
+    def count(self):
+        """
+        Return count of items in bag
+        :return: Item count
+        """
+        return self._bag.get_size()
