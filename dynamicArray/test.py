@@ -40,5 +40,16 @@ class TestDynamicArray(unittest.TestCase):
         actual = test_da.get_index(2)
         self.assertEqual(expected, actual)
 
+    def test_insert(self):
+        test_da = DynamicArray(initial_capacity=4)
+        test_da.append(1)
+        test_da.append(2)
+        test_da.append(4)
+        expected = [1, 2, 3, 4]
+        test_da.insert(3, 2)
+        actual = test_da.get_arr()
+        self.assertEqual(expected, actual)
+
+
 if __name__ == "__main__":
     unittest.main()
