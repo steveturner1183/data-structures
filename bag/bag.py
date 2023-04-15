@@ -1,5 +1,6 @@
 from dynamic_array.dynamic_array import DynamicArray
 
+
 class Bag:
     """
     Bag ADT with add, remove, clear, count, size, display
