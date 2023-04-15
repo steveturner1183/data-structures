@@ -118,3 +118,7 @@ class DynamicArray:
         self._data[self._size] = 0
         self._size -= 1
         return
+
+if __name__ == "__main__":
+    da = DynamicArray(2)
+    da.set(5, 5)

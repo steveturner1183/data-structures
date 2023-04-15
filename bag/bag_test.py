@@ -1,0 +1,8 @@
+import unittest
+from bag import Bag
+
+class TestDynamicArray(unittest.TestCase):
+    pass
+
+if __name__ == "__main__":
+    unittest.main()
