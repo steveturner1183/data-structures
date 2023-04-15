@@ -78,14 +78,23 @@ class DynamicArray:
         self._size += 1
         return
 
-    def insert(self, index):
+    def insert(self, value, index):
         """
         Insert element at a given index. Shift elements after given index
         forward
-        :param index:
+        :param value: Value to be inserted
+        :param index: Index valued to be inserted at
         :return: None
         """
-        pass
+        self._check_capacity()
+
+        # Shift elements
+        for i in range(self._size, index, -1):
+            self._data[i] = self._data[i-1]
+
+        self._data[index] = value
+        return
+
 
     def remove(self):
         """
