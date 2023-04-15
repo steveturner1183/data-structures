@@ -1,7 +1,7 @@
 import unittest
 from que import Que
 
-class TestDynamicArray(unittest.TestCase):
+class TestQue(unittest.TestCase):
     def test_enque(self):
         test_que = Que(initial_capacity=4)
         test_que.enque(1)
