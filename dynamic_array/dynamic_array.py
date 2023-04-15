@@ -1,6 +1,6 @@
 class DynamicArray:
     """
-    Implementation of dynamic array with add, insert, remove, and delete
+    Implementation of dynamic array with add, insert, remove, delete, slice
     methods
     """
     def __init__(self, initial_capacity):
@@ -47,6 +47,13 @@ class DynamicArray:
     ###########################################################################
     # Public Dynamic Array Functions
     ###########################################################################
+    def get_size(self):
+        """
+        Get the total elements in array
+        :return: total nuber of elements
+        """
+        return self._size
+
     def get_arr(self):
         """
         Retrieve the entire array
