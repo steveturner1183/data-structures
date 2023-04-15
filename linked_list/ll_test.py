@@ -16,7 +16,7 @@ class TestQue(unittest.TestCase):
     def test_add_back(self):
         pass
 
-    def test_insert_at_index(self, value, index):
+    def test_insert_at_index(self):
         pass
 
     def test_remove_front(self):
@@ -25,7 +25,7 @@ class TestQue(unittest.TestCase):
     def test_remove_back(self):
         pass
 
-    def test_remove_at_index(self, index):
+    def test_remove_at_index(self):
         pass
 
     def test_get_front(self):
@@ -34,13 +34,13 @@ class TestQue(unittest.TestCase):
     def test_get_back(self):
         pass
 
-    def test_remove_value(self, value):
+    def test_remove_value(self):
         pass
 
-    def test_count(self, value):
+    def test_count(self):
         pass
 
-    def test_slice(self, start, size):
+    def test_slice(self):
         pass
 
 if __name__ == "__main__":

@@ -16,6 +16,38 @@ class LinkedList:
         self._tail = Node(None)
         self._head.next = self._tail
 
+    ###########################################################################
+    # Private helper functions                                                #
+    ###########################################################################
+
+    def insert_node(self, front, insert, back):
+        """
+        Inserts a Node between two other nodes
+        :param front: front node to attach
+        :param insert: node to be inserted
+        :param back: back node to attach
+        :return: None
+        """
+        front.next = insert
+        insert.next = back
+        return
+
+    def remove_node(self, front, remove, back):
+        """
+        Removes a Node between two other nodes
+        :param front: front node to attach
+        :param remove: node to be removed
+        :param back: back node to attach
+        :return: None
+        """
+        front.next = back
+        return
+
+
+    ###########################################################################
+    # Public Linked List functions                                            #
+    ###########################################################################
+
     def lenth(self):
         """
         Returns length of linked list
@@ -27,9 +59,19 @@ class LinkedList:
         """
         Add value to the front of linked list
         :param value: Value to be inserted
-        :return:
+        :return: None
         """
-        pass
+        new_node = Node(value)
+        new_node.next = self._head
+        self._head = new_node
+        return
+
+    def get_front(self):
+        """
+        Return value at the front of the linked list
+        :return: Value at front
+        """
+        return self._head.value
 
     def add_back(self, value):
         """
@@ -67,13 +109,6 @@ class LinkedList:
         Remove value at a given index
         :param index: index value is to be removed at
         :return: None
-        """
-        pass
-
-    def get_front(self):
-        """
-        Return value at the front of the linked list
-        :return: Value at front
         """
         pass
 
