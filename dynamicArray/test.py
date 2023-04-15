@@ -12,5 +12,15 @@ class TestDynamicArray(unittest.TestCase):
         actual = test_da.get_arr()
         self.assertEqual(expected, actual)
 
+    def test_get_index(self):
+        """
+        Test the get function
+        """
+        test_da = DynamicArray(initial_capacity=4)
+        test_da.set(1, 1)
+        expected = 1
+        actual = test_da.get_index(1)
+        self.assertEqual(expected, actual)
+
 if __name__ == "__main__":
     unittest.main()
