@@ -101,7 +101,7 @@ class DynamicArray:
         Remove element from the end of array
         :return: None
         """
-        self._data[self._size] = 0
+        self._data[self._size-1] = 0
         self._size -= 1
         return
 
