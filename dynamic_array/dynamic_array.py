@@ -39,9 +39,9 @@ class DynamicArray:
         if self._size == self._capacity:
             self._grow_array()
 
-    def check_bounds(self, indices):
+    def _check_bounds(self, indices):
         for index in indices:
-            if index not in range(0, self._capacity-1):
+            if index not in range(0, self._capacity):
                 raise Exception("Index out of bounds")
 
     ###########################################################################
@@ -131,8 +131,6 @@ class DynamicArray:
         :param end: End Index
         :return: Slice of array between start and end index
         """
+        self._check_bounds([start, end])
+        return [self._data[i] for i in range(start, end+1)]
 
-
-if __name__ == "__main__":
-    da = DynamicArray(2)
-    da.set(5, 5)
