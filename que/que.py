@@ -27,4 +27,7 @@ class Que:
         Removes item from the start of que and returns
         :return: item at the start of the que
         """
-        pass
+        value = self._que.get_index(0)
+        self._que.delete(0)
+        return value
+
