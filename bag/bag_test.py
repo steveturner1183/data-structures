@@ -2,7 +2,7 @@ import unittest
 from bag import Bag
 
 class TestDynamicArray(unittest.TestCase):
-    def test_remove(self, value):
+    def test_remove(self):
         test_bag = Bag(initial_capacity=4)
         test_bag.add(3)
         test_bag.add(1)
