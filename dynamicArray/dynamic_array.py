@@ -53,7 +53,8 @@ class DynamicArray:
         :param value: Value to be set
         :return:
         """
-        pass
+        self._data[index] = value
+        return
 
     def add(self):
         """
