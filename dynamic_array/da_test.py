@@ -73,5 +73,6 @@ class TestDynamicArray(unittest.TestCase):
         actual = test_da.slice(2, 3)
         self.assertEqual(expected, actual)
 
+
 if __name__ == "__main__":
     unittest.main()
