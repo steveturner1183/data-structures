@@ -10,11 +10,19 @@ class Stack:
         Remove and return item from the top of the stack
         :return: Item at the top of the stack
         """
-        pass
+        pop_index = self._stack.get_size()-1
 
-    def push(self):
+        # Store item to return
+        value = self._stack.get_index(pop_index)
+
+        # Remove last item
+        self._stack.remove()
+
+        return value
+
+    def push(self, value):
         """
         Add item to the top of the stack
         :return: None
         """
-        pass
+        self._stack.append(value)
