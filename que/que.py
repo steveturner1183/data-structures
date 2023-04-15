@@ -7,13 +7,20 @@ class Que:
     def __init__(self, initial_capacity):
         self._que = DynamicArray(initial_capacity=initial_capacity)
 
+    def get_que(self):
+        """
+        Returns the que
+        :return: que array
+        """
+        return self._que.get_arr()
+
     def enque(self, value):
         """
         Adds value to the back of the que
         :param value: Value to be added
         :return: None
         """
-        pass
+        self._que.append(value)
 
     def deque(self):
         """
