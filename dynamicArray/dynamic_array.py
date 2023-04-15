@@ -56,12 +56,14 @@ class DynamicArray:
         self._data[index] = value
         return
 
-    def add(self):
+    def append(self, value):
         """
         Add element to the end of array
+        :param value: Value to be appended
         :return: None
         """
-        pass
+        self._data[self._size] = value
+        return
 
     def insert(self, index):
         """
