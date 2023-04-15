@@ -3,8 +3,12 @@ from linked_list import LinkedList
 
 
 class TestQue(unittest.TestCase):
-    def test_add_front(self):
-        pass
+    def test_get_and_add_front(self):
+        expected = 1
+        test_ll = LinkedList()
+        test_ll.add_front(1)
+        actual = test_ll.get_front()
+        self.assertEqual(expected, actual)
 
     def test_lenth(self):
         pass

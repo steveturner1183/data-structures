@@ -2,9 +2,9 @@ class Node:
     """
     Node for use in linked list
     """
-    def __init__(self):
+    def __init__(self, value):
         self.next = None
-        self.value = None
+        self.value = value
 
 
 class LinkedList:
@@ -12,7 +12,9 @@ class LinkedList:
     Implementation of singly linked list
     """
     def __init__(self):
-        pass
+        self._head = Node(None)
+        self._tail = Node(None)
+        self._head.next = self._tail
 
     def lenth(self):
         """
@@ -21,16 +23,18 @@ class LinkedList:
         """
         pass
 
-    def add_front(self):
+    def add_front(self, value):
         """
         Add value to the front of linked list
+        :param value: Value to be inserted
         :return:
         """
         pass
 
-    def add_back(self):
+    def add_back(self, value):
         """
         Add value to the back of the linked list
+        :param value: Value to be inserted
         :return: None
         """
         pass
