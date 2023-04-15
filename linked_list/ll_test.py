@@ -3,10 +3,10 @@ from linked_list import LinkedList
 
 
 class TestQue(unittest.TestCase):
-    def test_lenth(self):
+    def test_add_front(self):
         pass
 
-    def test_add_front(self):
+    def test_lenth(self):
         pass
 
     def test_add_back(self):

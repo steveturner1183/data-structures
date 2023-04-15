@@ -3,7 +3,8 @@ class Node:
     Node for use in linked list
     """
     def __init__(self):
-        pass
+        self.next = None
+        self.value = None
 
 
 class LinkedList:
