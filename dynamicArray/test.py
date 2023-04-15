@@ -50,6 +50,16 @@ class TestDynamicArray(unittest.TestCase):
         actual = test_da.get_arr()
         self.assertEqual(expected, actual)
 
+    def test_remove(self):
+        test_da = DynamicArray(initial_capacity=4)
+        test_da.append(1)
+        test_da.append(2)
+        test_da.append(3)
+        expected = [1, 2, 0, 0]
+        test_da.remove()
+        actual = test_da.get_arr()
+        self.assertEqual(expected, actual)
+
 
 if __name__ == "__main__":
     unittest.main()
