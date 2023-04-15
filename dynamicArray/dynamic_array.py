@@ -28,7 +28,17 @@ class DynamicArray:
         """
         pass
 
-    def get(self, index):
+    ###########################################################################
+    # Public Dynamic Array Functions
+    ###########################################################################
+    def get_arr(self):
+        """
+        Retrieve the entire array
+        :return: Array object
+        """
+        return self._data
+
+    def get_index(self, index):
         """
         Retrieve element at given index
         :param index: Index to have element retrieved
@@ -36,10 +46,11 @@ class DynamicArray:
         """
         pass
 
-    def set(self, index):
+    def set(self, index, value):
         """
         Change value at given index
         :param index: Index to have element changed
+        :param value: Value to be set
         :return:
         """
         pass
