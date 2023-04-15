@@ -39,6 +39,11 @@ class DynamicArray:
         if self._size == self._capacity:
             self._grow_array()
 
+    def check_bounds(self, indices):
+        for index in indices:
+            if index not in range(0, self._capacity-1):
+                raise Exception("Index out of bounds")
+
     ###########################################################################
     # Public Dynamic Array Functions
     ###########################################################################
@@ -118,6 +123,15 @@ class DynamicArray:
         self._data[self._size] = 0
         self._size -= 1
         return
+
+    def slice(self, start, end):
+        """
+        Slices the array of given indices
+        :param start: Start index
+        :param end: End Index
+        :return: Slice of array between start and end index
+        """
+
 
 if __name__ == "__main__":
     da = DynamicArray(2)
