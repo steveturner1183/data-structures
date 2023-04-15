@@ -44,7 +44,7 @@ class DynamicArray:
         :param index: Index to have element retrieved
         :return: Element at given index
         """
-        pass
+        return self._data[index]
 
     def set(self, index, value):
         """
