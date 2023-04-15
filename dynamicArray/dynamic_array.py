@@ -93,15 +93,17 @@ class DynamicArray:
             self._data[i] = self._data[i-1]
 
         self._data[index] = value
+        self._size += 1
         return
-
 
     def remove(self):
         """
         Remove element from the end of array
         :return: None
         """
-        pass
+        self._data[self._size] = 0
+        self._size -= 1
+        return
 
     def delete(self, index):
         """
