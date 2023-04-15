@@ -1,5 +1,6 @@
 from dynamic_array.dynamic_array import DynamicArray
 
+
 class Que:
     """
     Implementation of que using existing dynamic array
