@@ -64,6 +64,14 @@ class TestDynamicArray(unittest.TestCase):
         actual = test_da.get_arr()
         self.assertEqual(expected, actual)
 
+    def test_slice(self):
+        test_da = DynamicArray(initial_capacity=4)
+        test_da.append(1)
+        test_da.append(2)
+        test_da.append(3)
+        expected = [3, 0]
+        actual = test_da.slice(2, 3)
+        self.assertEqual(expected, actual)
 
 if __name__ == "__main__":
     unittest.main()
