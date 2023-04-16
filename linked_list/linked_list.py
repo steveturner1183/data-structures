@@ -43,6 +43,37 @@ class LinkedList:
         prev_node.next = remove_node.next
         return
 
+    def _find_node_by_index(self, target_index, cur_node=None, cur_index=0):
+        """
+        Find node at given index
+        :param target_index: index to be found
+        :param cur_node: current node
+        :param cur_index: current index
+        :return: Node at given index
+        """
+        if cur_node is None:
+            cur_node = self._head
+
+        if cur_index == target_index:
+            return cur_node
+
+        return self._find_node_by_index(target_index, cur_node.next,
+                                        cur_index + 1)
+
+    def _find_last_node(self, cur_node=None):
+        """
+        Find last node before tail
+        :param cur_node: Current node
+        :return: Last node before tail
+        """
+        if cur_node is None:
+            cur_node = self._head
+
+        if cur_node.next == self._tail:
+            return cur_node
+
+        return self._find_last_node(cur_node.next)
+
     ###########################################################################
     # Public Linked List functions                                            #
     ###########################################################################
@@ -84,22 +115,19 @@ class LinkedList:
         """
         return self._head.next.value
 
-    def add_back(self, value, cur_node=None):
+    def add_back(self, value):
         """
         Add value to the back of the linked list
         :param value: Value to be inserted
         :param cur_node: Current node
         :return: None
         """
-        if cur_node is None:
-            cur_node = self._head
+        new_node = Node(value)
+        last_node = self._find_last_node()
 
-        if cur_node.next == self._tail:
-            new_node = Node(value)
-            self._insert_node(cur_node, new_node)
-            return
+        self._insert_node(last_node, new_node)
 
-        return self.add_back(value, cur_node.next)
+        return
 
     def remove_back(self, prev_node=None, cur_node=None):
         """
@@ -116,21 +144,15 @@ class LinkedList:
 
         return self.remove_back(cur_node, cur_node.next)
 
-    def get_back(self, cur_node=None):
+    def get_back(self):
         """
         return value at the back of linked list
         :param cur_node: Current node
         :return: Value at back
         """
-        if cur_node is None:
-            cur_node = self._head
+        return self._find_last_node().value
 
-        if cur_node.next == self._tail:
-            return cur_node.value
-
-        return self.get_back(cur_node.next)
-
-    def get_at_index(self, target_index, cur_node=None, cur_index=0):
+    def get_at_index(self, target_index):
         """
         Get value at given index
         :param target_index: index to be found
@@ -138,13 +160,9 @@ class LinkedList:
         :param cur_index: current index
         :return: Value at given index
         """
-        if cur_node is None:
-            cur_node = self._head
+        target_node = self._find_node_by_index(target_index)
 
-        if cur_index == target_index:
-            return cur_node.value
-
-        return self.get_at_index(target_index, cur_node.next, cur_index + 1)
+        return target_node.value
 
     def insert_at_index(self, value, target_index, cur_node=None, cur_index=0):
         """
