@@ -158,7 +158,7 @@ class LinkedList:
         if cur_node is None:
             cur_node = self._head
 
-        if cur_index == target_index:
+        if cur_index == target_index-1:
             new_node = Node(value)
             self._insert_node(cur_node, new_node)
             return
