@@ -19,8 +19,12 @@ class TestQue(unittest.TestCase):
         actual = test_ll.length()
         self.assertEqual(expected, actual)
 
-    def test_add_back(self):
-        pass
+    def test_add_and_get_back(self):
+        expected = 1
+        test_ll = LinkedList()
+        test_ll.add_back(1)
+        actual = test_ll.get_back()
+        self.assertEqual(expected, actual)
 
     def test_insert_at_index(self):
         pass
