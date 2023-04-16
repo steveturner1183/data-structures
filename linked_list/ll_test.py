@@ -50,10 +50,7 @@ class TestQue(unittest.TestCase):
     def test_remove_at_index(self):
         pass
 
-    def test_get_front(self):
-        pass
-
-    def test_get_back(self):
+    def test_get_index(self):
         pass
 
     def test_remove_value(self):

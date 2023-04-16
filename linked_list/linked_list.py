@@ -130,14 +130,41 @@ class LinkedList:
 
         return self.get_back(cur_node.next)
 
-    def insert_at_index(self, value, index):
+    def get_at_index(self, target_index, cur_node=None, cur_index=0):
+        """
+        Get value at given index
+        :param target_index: index to be found
+        :param cur_node: current node
+        :param cur_index: current index
+        :return: Value at given index
+        """
+        if cur_node is None:
+            cur_node = self._head
+
+        if cur_index == target_index:
+            return cur_node.value
+
+        return self.get_at_index(target_index, cur_node.next, cur_index + 1)
+
+    def insert_at_index(self, value, target_index, cur_node=None, cur_index=0):
         """
         Insert value at given index
         :param value: Value to be inserted
-        :param index: Index for insertion
-        :return:
+        :param target_index: Index for insertion
+        :param cur_node: current node
+        :param cur_index: current index
+        :return: None
         """
-        pass
+        if cur_node is None:
+            cur_node = self._head
+
+        if cur_index == target_index:
+            new_node = Node(value)
+            self._insert_node(cur_node, new_node)
+            return
+
+        return self.insert_at_index(value, target_index, cur_node.next,
+                                    cur_index+1)
 
     def remove_at_index(self, index):
         """
