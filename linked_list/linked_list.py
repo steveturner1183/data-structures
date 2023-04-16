@@ -33,14 +33,13 @@ class LinkedList:
         insert.next = temp_next
         return
 
-    def _remove_node(self, prev_node, remove_node):
+    def _remove_node(self, prev_node):
         """
         Removes a Node between two other nodes
-        :param prev_node: front node to attach
-        :param remove_node: node to be removed
+        :param prev_node: Node before node to be removed
         :return: None
         """
-        prev_node.next = remove_node.next
+        prev_node.next = prev_node.next.next
         return
 
     def _find_node_by_index(self, target_index, cur_node=None, cur_index=1):
@@ -142,7 +141,7 @@ class LinkedList:
             cur_node = self._head.next
 
         if cur_node.next == self._tail:
-            self._remove_node(prev_node, cur_node)
+            self._remove_node(prev_node)
             return
 
         return self.remove_back(cur_node, cur_node.next)
@@ -177,22 +176,25 @@ class LinkedList:
         :return: None
         """
         new_node = Node(value)
+
         # Find node before index to be inserted
         prev_node = self._find_node_by_index(target_index-1)
 
         self._insert_node(prev_node, new_node)
 
-    def remove_at_index(self, index):
+    def remove_at_index(self, target_index):
         """
         Remove value at a given index
-        :param index: index value is to be removed at
+        :param target_index: index value is to be removed at
         :return: None
         """
-        pass
+        prev_node = self._find_node_by_index(target_index-1)
+        self._remove_node(prev_node)
+        return
 
-    def remove_value(self, value):
+    def remove_value(self, value, cur_node=None):
         """
-        Removes given value from the list
+        Removes first occurance of given value from the list
         :param value: Value to be removed
         :return: None
         """
