@@ -71,6 +71,13 @@ class LinkedList:
         self._insert_node(self._head, new_node)
         return
 
+    def remove_front(self):
+        """
+        Remove value at the front of the linked list
+        :return: None
+        """
+        pass
+
     def get_front(self):
         """
         Return value at the front of the linked list
@@ -95,6 +102,13 @@ class LinkedList:
 
         return self.add_back(value, cur_node.next)
 
+    def remove_back(self):
+        """
+        Remove value at the back of the linked list
+        :return: None
+        """
+        pass
+
     def get_back(self, cur_node=None):
         """
         return value at the back of linked list
@@ -118,20 +132,6 @@ class LinkedList:
         """
         pass
 
-    def remove_front(self):
-        """
-        Remove value at the front of the linked list
-        :return:
-        """
-        pass
-
-    def remove_back(self):
-        """
-        Remove value at the back of the linked list
-        :return: None
-        """
-        pass
-
     def remove_at_index(self, index):
         """
         Remove value at a given index
@@ -139,8 +139,6 @@ class LinkedList:
         :return: None
         """
         pass
-
-
 
     def remove_value(self, value):
         """
