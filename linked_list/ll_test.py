@@ -39,7 +39,13 @@ class TestQue(unittest.TestCase):
         pass
 
     def test_remove_back(self):
-        pass
+        expected = 1
+        test_ll = LinkedList()
+        test_ll.add_front(1)
+        test_ll.add_back(2)
+        test_ll.remove_back()
+        actual = test_ll.get_back()
+        self.assertEqual(expected, actual)
 
     def test_remove_at_index(self):
         pass
