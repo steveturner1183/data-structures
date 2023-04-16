@@ -78,13 +78,36 @@ class LinkedList:
         """
         return self._head.next.value
 
-    def add_back(self, value):
+    def add_back(self, value, cur_node=None):
         """
         Add value to the back of the linked list
         :param value: Value to be inserted
+        :param cur_node: Current node
         :return: None
         """
-        pass
+        if cur_node is None:
+            cur_node = self._head
+
+        if cur_node.next == self._tail:
+            new_node = Node(value)
+            self._insert_node(cur_node, new_node)
+            return
+
+        return self.add_back(value, cur_node.next)
+
+    def get_back(self, cur_node=None):
+        """
+        return value at the back of linked list
+        :param cur_node: Current node
+        :return: Value at back
+        """
+        if cur_node is None:
+            cur_node = self._head
+
+        if cur_node.next == self._tail:
+            return cur_node.value
+
+        return self.get_back(cur_node.next)
 
     def insert_at_index(self, value, index):
         """
@@ -117,12 +140,7 @@ class LinkedList:
         """
         pass
 
-    def get_back(self):
-        """
-        return value at the back of linked list
-        :return: Value at back
-        """
-        pass
+
 
     def remove_value(self, value):
         """

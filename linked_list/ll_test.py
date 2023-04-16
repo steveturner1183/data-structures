@@ -20,9 +20,10 @@ class TestQue(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_add_and_get_back(self):
-        expected = 1
+        expected = 2
         test_ll = LinkedList()
-        test_ll.add_back(1)
+        test_ll.add_front(1)
+        test_ll.add_back(2)
         actual = test_ll.get_back()
         self.assertEqual(expected, actual)
 
