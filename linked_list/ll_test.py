@@ -10,8 +10,14 @@ class TestQue(unittest.TestCase):
         actual = test_ll.get_front()
         self.assertEqual(expected, actual)
 
-    def test_lenth(self):
-        pass
+    def test_length(self):
+        expected = 3
+        test_ll = LinkedList()
+        test_ll.add_front(1)
+        test_ll.add_front(1)
+        test_ll.add_front(1)
+        actual = test_ll.length()
+        self.assertEqual(expected, actual)
 
     def test_add_back(self):
         pass

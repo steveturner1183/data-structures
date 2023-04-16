@@ -49,7 +49,7 @@ class LinkedList:
     # Public Linked List functions                                            #
     ###########################################################################
 
-    def lenth(self):
+    def length(self):
         """
         Returns length of linked list
         :return: length of linked list
