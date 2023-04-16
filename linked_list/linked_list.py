@@ -44,17 +44,22 @@ class LinkedList:
         front.next = back
         return
 
-
     ###########################################################################
     # Public Linked List functions                                            #
     ###########################################################################
 
-    def length(self):
+    def length(self, cur_node=None):
         """
         Returns length of linked list
         :return: length of linked list
         """
-        pass
+        if cur_node is None:
+            cur_node = self._head.next
+
+        if cur_node == self._tail:
+            return 0
+
+        return 1 + self.length(cur_node.next)
 
     def add_front(self, value):
         """
