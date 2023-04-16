@@ -76,7 +76,7 @@ class LinkedList:
         Remove value at the front of the linked list
         :return: None
         """
-        pass
+        self._head.next = self._head.next.next
 
     def get_front(self):
         """
