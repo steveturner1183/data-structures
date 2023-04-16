@@ -50,7 +50,7 @@ class TestQue(unittest.TestCase):
         test_ll.add_front(2)
         test_ll.add_front(4)
         test_ll.add_front(6)
-        actual = test_ll.get_at_index(2)
+        actual = test_ll.get_at_index(1)
         self.assertEqual(expected, actual)
 
     def test_insert_at_index(self):

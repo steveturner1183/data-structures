@@ -43,7 +43,7 @@ class LinkedList:
         prev_node.next = remove_node.next
         return
 
-    def _find_node_by_index(self, target_index, cur_node=None, cur_index=0):
+    def _find_node_by_index(self, target_index, cur_node=None, cur_index=1):
         """
         Find node at given index
         :param target_index: index to be found
@@ -52,7 +52,10 @@ class LinkedList:
         :return: Node at given index
         """
         if cur_node is None:
-            cur_node = self._head
+            cur_node = self._head.next
+
+            if cur_node == self._tail:
+                raise Exception("Empty List")
 
         if cur_index == target_index:
             return cur_node
@@ -155,7 +158,7 @@ class LinkedList:
     def get_at_index(self, target_index):
         """
         Get value at given index
-        :param target_index: index to be found
+        :param target_index: index to be found (1, 2..)
         :param cur_node: current node
         :param cur_index: current index
         :return: Value at given index
@@ -164,25 +167,20 @@ class LinkedList:
 
         return target_node.value
 
-    def insert_at_index(self, value, target_index, cur_node=None, cur_index=0):
+    def insert_at_index(self, value, target_index):
         """
         Insert value at given index
         :param value: Value to be inserted
-        :param target_index: Index for insertion
+        :param target_index: Index for insertion (1, 2..)
         :param cur_node: current node
         :param cur_index: current index
         :return: None
         """
-        if cur_node is None:
-            cur_node = self._head
+        new_node = Node(value)
+        # Find node before index to be inserted
+        prev_node = self._find_node_by_index(target_index-1)
 
-        if cur_index == target_index-1:
-            new_node = Node(value)
-            self._insert_node(cur_node, new_node)
-            return
-
-        return self.insert_at_index(value, target_index, cur_node.next,
-                                    cur_index+1)
+        self._insert_node(prev_node, new_node)
 
     def remove_at_index(self, index):
         """
