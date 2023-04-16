@@ -33,15 +33,14 @@ class LinkedList:
         insert.next = temp_next
         return
 
-    def _remove_node(self, front, remove, back):
+    def _remove_node(self, prev_node, remove_node):
         """
         Removes a Node between two other nodes
-        :param front: front node to attach
-        :param remove: node to be removed
-        :param back: back node to attach
+        :param prev_node: front node to attach
+        :param remove_node: node to be removed
         :return: None
         """
-        front.next = back
+        prev_node.next = remove_node.next
         return
 
     ###########################################################################
@@ -102,12 +101,20 @@ class LinkedList:
 
         return self.add_back(value, cur_node.next)
 
-    def remove_back(self):
+    def remove_back(self, prev_node=None, cur_node=None):
         """
         Remove value at the back of the linked list
         :return: None
         """
-        pass
+        if cur_node is None:
+            prev_node = self._head
+            cur_node = self._head.next
+
+        if cur_node.next == self._tail:
+            self._remove_node(prev_node, cur_node)
+            return
+
+        return self.remove_back(cur_node, cur_node.next)
 
     def get_back(self, cur_node=None):
         """

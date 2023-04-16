@@ -35,9 +35,6 @@ class TestQue(unittest.TestCase):
         actual = test_ll.get_front()
         self.assertEqual(expected, actual)
 
-    def test_insert_at_index(self):
-        pass
-
     def test_remove_back(self):
         expected = 1
         test_ll = LinkedList()
@@ -46,6 +43,9 @@ class TestQue(unittest.TestCase):
         test_ll.remove_back()
         actual = test_ll.get_back()
         self.assertEqual(expected, actual)
+
+    def test_insert_at_index(self):
+        pass
 
     def test_remove_at_index(self):
         pass
