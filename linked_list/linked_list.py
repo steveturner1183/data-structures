@@ -20,7 +20,7 @@ class LinkedList:
     # Private helper functions                                                #
     ###########################################################################
 
-    def insert_node(self, front, insert, back):
+    def _insert_node(self, front, insert):
         """
         Inserts a Node between two other nodes
         :param front: front node to attach
@@ -28,11 +28,12 @@ class LinkedList:
         :param back: back node to attach
         :return: None
         """
+        temp_next = front.next
         front.next = insert
-        insert.next = back
+        insert.next = temp_next
         return
 
-    def remove_node(self, front, remove, back):
+    def _remove_node(self, front, remove, back):
         """
         Removes a Node between two other nodes
         :param front: front node to attach
@@ -62,8 +63,7 @@ class LinkedList:
         :return: None
         """
         new_node = Node(value)
-        new_node.next = self._head
-        self._head = new_node
+        self._insert_node(self._head, new_node)
         return
 
     def get_front(self):
@@ -71,7 +71,7 @@ class LinkedList:
         Return value at the front of the linked list
         :return: Value at front
         """
-        return self._head.value
+        return self._head.next.value
 
     def add_back(self, value):
         """
