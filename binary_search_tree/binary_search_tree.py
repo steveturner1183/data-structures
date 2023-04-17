@@ -13,6 +13,11 @@ class BST:
     def __init__(self, start_tree=None) -> None:
         self.root = None
 
+        # Populate with existing tree
+        if start_tree is not None:
+            for value in start_tree:
+                self.add(value)
+
     def add(self, value):
         """
         Adds value to bst
