@@ -224,12 +224,3 @@ class LinkedList:
             return self.count(value, cur_node.next, count + 1)
         else:
             return self.count(value, cur_node.next, count)
-
-    def slice(self, start, size):
-        """
-        Returns new linked list with value only from start to size
-        :param start: Slice start
-        :param size: Amount to slice
-        :return: New sliced linked list
-        """
-        pass

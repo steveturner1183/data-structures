@@ -95,8 +95,6 @@ class TestQue(unittest.TestCase):
         actual = test_ll.count(2)
         self.assertEqual(expected, actual)
 
-    def test_slice(self):
-        pass
 
 if __name__ == "__main__":
     unittest.main()
