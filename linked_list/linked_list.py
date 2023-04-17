@@ -196,6 +196,8 @@ class LinkedList:
         """
         Removes first occurance of given value from the list
         :param value: Value to be removed
+        :param prev_node: previous node
+        :param cur_node: current node
         :return: None
         """
         if cur_node is None:
@@ -212,6 +214,8 @@ class LinkedList:
         """
         Returns count of nodes that match given value
         :param value: Value to be counted
+        :param cur_node: current node
+        :param count: current count of matched values
         :return: Count of value
         """
         if cur_node is None:
