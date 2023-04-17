@@ -84,7 +84,16 @@ class TestQue(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_count(self):
-        pass
+        expected = 3
+        test_ll = LinkedList()
+        test_ll.add_front(2)
+        test_ll.add_front(4)
+        test_ll.add_front(6)
+        test_ll.add_front(2)
+        test_ll.add_front(7)
+        test_ll.add_front(2)
+        actual = test_ll.count(2)
+        self.assertEqual(expected, actual)
 
     def test_slice(self):
         pass

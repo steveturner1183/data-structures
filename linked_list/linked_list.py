@@ -208,13 +208,22 @@ class LinkedList:
 
         return self.remove_value(cur_node, cur_node.next)
 
-    def count(self, value):
+    def count(self, value, cur_node=None, count=0):
         """
         Returns count of nodes that match given value
         :param value: Value to be counted
         :return: Count of value
         """
-        pass
+        if cur_node is None:
+            cur_node = self._head.next
+
+        if cur_node == self._tail:
+            return count
+
+        if cur_node.value == value:
+            return self.count(value, cur_node.next, count + 1)
+        else:
+            return self.count(value, cur_node.next, count)
 
     def slice(self, start, size):
         """
