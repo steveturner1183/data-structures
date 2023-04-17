@@ -192,13 +192,21 @@ class LinkedList:
         self._remove_node(prev_node)
         return
 
-    def remove_value(self, value, cur_node=None):
+    def remove_value(self, value, prev_node=None, cur_node=None):
         """
         Removes first occurance of given value from the list
         :param value: Value to be removed
         :return: None
         """
-        pass
+        if cur_node is None:
+            prev_node = self._head
+            cur_node = self._head.next
+
+        if cur_node.value == value:
+            self._remove_node(prev_node)
+            return
+
+        return self.remove_value(cur_node, cur_node.next)
 
     def count(self, value):
         """

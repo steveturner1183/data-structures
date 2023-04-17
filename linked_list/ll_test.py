@@ -74,7 +74,14 @@ class TestQue(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_remove_value(self):
-        pass
+        expected = 2
+        test_ll = LinkedList()
+        test_ll.add_front(2)
+        test_ll.add_front(4)
+        test_ll.add_front(6)
+        test_ll.remove_value(6)
+        actual = test_ll.get_at_index(2)
+        self.assertEqual(expected, actual)
 
     def test_count(self):
         pass
