@@ -18,13 +18,34 @@ class BST:
             for value in start_tree:
                 self.add(value)
 
-    def add(self, value):
+    def add(self, value, cur_node=None):
         """
         Adds value to bst
         :param value: Value to be added
         :return: None
         """
-        pass
+        if self.root is None:  # Empty tree, make node the root
+            self.root = TreeNode(value)
+            return
+
+        if cur_node is None:  # Starting case
+            cur_node = self.root
+            return self.add(value, cur_node)
+
+        elif value < cur_node.value:  # Traverse left
+            if cur_node.left is None:
+                cur_node.left = TreeNode(value)
+                return
+            else:
+                return self.add(value, cur_node.left)
+
+        elif value >= cur_node.value:  # Traverse right
+            if cur_node.right is None:
+                cur_node.right = TreeNode(value)
+                return
+            else:
+                return self.add(value, cur_node.right)
+
 
     def contains(self, value):
         """
@@ -56,17 +77,28 @@ class BST:
         """
         pass
 
-    def pre_order_traversal(self):
+    def pre_order_traversal(self, cur_node=None, trav_list=None):
         """
         Returns List containing pre-order traversal
         :return: List with pre-order traversal
         """
-        pass
+        if trav_list is None:
+            cur_node = self.root
+            trav_list = []
+
+        if cur_node is None:
+            return
+        else:
+            trav_list.append(cur_node.value)
+
+            self.pre_order_traversal(cur_node.left, trav_list)
+            self.pre_order_traversal(cur_node.right, trav_list)
+
+        return trav_list
 
     def in_order_traversal(self):
         """
-        Returns List containing in-order traversal
-        :return: List with in-order traversal
+        :return: List with in-order traversal of BST
         """
         pass
 
