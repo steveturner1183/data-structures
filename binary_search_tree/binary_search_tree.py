@@ -8,6 +8,9 @@ class TreeNode:
         self.left = None
         self.right = None
 
+    def __repr__(self):
+        return repr(self.value)
+
 
 class BST:
     def __init__(self, start_tree=None) -> None:
@@ -18,7 +21,7 @@ class BST:
             for value in start_tree:
                 self.add(value)
 
-    def add(self, value, cur_node=None):
+    def add(self, value, node=None):
         """
         Adds value to bst
         :param value: Value to be added
@@ -28,39 +31,56 @@ class BST:
             self.root = TreeNode(value)
             return
 
-        if cur_node is None:  # Starting case
-            cur_node = self.root
-            return self.add(value, cur_node)
+        if node is None:  # Starting case
+            node = self.root
 
-        elif value < cur_node.value:  # Traverse left
-            if cur_node.left is None:
-                cur_node.left = TreeNode(value)
+        if value < node.value:  # Traverse left
+            if node.left is None:
+                node.left = TreeNode(value)
                 return
             else:
-                return self.add(value, cur_node.left)
+                return self.add(value, node.left)
 
-        elif value >= cur_node.value:  # Traverse right
-            if cur_node.right is None:
-                cur_node.right = TreeNode(value)
+        elif value >= node.value:  # Traverse right
+            if node.right is None:
+                node.right = TreeNode(value)
                 return
             else:
-                return self.add(value, cur_node.right)
+                return self.add(value, node.right)
 
-
-    def contains(self, value):
+    def contains(self, value, node=None):
         """
         Checks if tree contains node with given value
         :param value: Value to be found
         :return: True if value is in true, false if not found
         """
-        pass
+        if node is None:  # Starting case
+            node = self.root
+
+        if node.value == value:
+            return True
+
+        if value < node.value:  # Traverse left
+            if node.left is None:
+                return False
+            else:
+                return self.contains(value, node.left)
+
+        elif value >= node.value:  # Traverse right
+            if node.right is None:
+                return False
+            else:
+                return self.contains(value, node.right)
 
     def get_first(self):
         """
         Returns the first value in the BST
         :return: First value in tree
         """
-        pass
+        if self.root is not None:
+            return self.root.value
+        else:
+            return self.root
 
     def remove_first(self):
         """
@@ -69,30 +89,74 @@ class BST:
         """
         pass
 
-    def remove(self, value):
+    def remove(self, value, parent=None, node=None):
         """
         Removes node by value
         :param value: value to be removed
         :return: None
         """
-        pass
+        if node is None:
+            node = self.root
 
-    def pre_order_traversal(self, cur_node=None, trav_list=None):
+        if node.value == value:  # Node found
+            if node.left is None and node.right is None:
+                self._swap_node(node, parent)
+            elif node.left is not None and node.right is None:
+                self._swap_node(node, parent, node.left)
+            elif node.left is None and node.right is not None:
+                self._swap_node(node, parent, node.right)
+            elif node.left is not None and node.right is not None:
+                successor = self.in_order_successor(node)
+                self._swap_node(node, parent, successor)
+        else:
+            if value < node.value:
+                self.remove(value, node, node.left)
+            else:
+                self.remove(value, node, node.right)
+
+    def _swap_node(self, node, parent, new_node=None):
+        if node == parent.left:
+            parent.left = new_node
+        elif node == parent.right:
+            parent.right = new_node
+        if new_node is None:
+            return
+        if new_node != node.right and new_node != node.left:
+            new_node.left = node.left
+            new_node.right = node.right
+        return
+
+    def in_order_successor(self, node):
+        parent = node
+        node = node.right
+
+        while node.left is not None:
+            parent = node
+            node = node.left
+
+        if node == parent.left:
+            parent.left = node.right
+        if node == parent.right:
+            parent.right = node.right
+
+        return node
+
+    def pre_order_traversal(self, node=None, trav_list=None):
         """
         Returns List containing pre-order traversal
         :return: List with pre-order traversal
         """
         if trav_list is None:
-            cur_node = self.root
+            node = self.root
             trav_list = []
 
-        if cur_node is None:
+        if node is None:
             return
         else:
-            trav_list.append(cur_node.value)
+            trav_list.append(node.value)
 
-            self.pre_order_traversal(cur_node.left, trav_list)
-            self.pre_order_traversal(cur_node.right, trav_list)
+            self.pre_order_traversal(node.left, trav_list)
+            self.pre_order_traversal(node.right, trav_list)
 
         return trav_list
 
