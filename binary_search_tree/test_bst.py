@@ -125,8 +125,7 @@ class TestQue(unittest.TestCase):
         actual = tree.remove_first()
         # All leaves removed
         self.assertFalse(actual)
-    
-"""
+
     def test_pre_order_traversal_1(self):
         tree = BST([10, 20, 5, 15, 17, 7, 12])
         expected = [10, 5, 7, 20, 15, 12, 17]
@@ -151,6 +150,7 @@ class TestQue(unittest.TestCase):
         actual = tree.in_order_traversal()
         self.assertEqual(expected, actual)
 
+
     def test_post_order_traversal_1(self):
         tree = BST([10, 20, 5, 15, 17, 7, 12])
         expected = [7, 5, 12, 17, 15, 20, 10]
@@ -162,7 +162,7 @@ class TestQue(unittest.TestCase):
         expected = [-1, 5, -1, 10, 10]
         actual = tree.post_order_traversal()
         self.assertEqual(expected, actual)
-
+"""
     def test_by_level_traversal_1(self):
         tree = BST([10, 20, 5, 15, 17, 7, 12])
         expected = [10, 5, 20, 7, 15, 12, 17]

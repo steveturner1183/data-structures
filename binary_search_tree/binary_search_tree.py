@@ -220,6 +220,8 @@ class BST:
     def pre_order_traversal(self, node=None, trav_list=None):
         """
         Returns List containing pre-order traversal
+        :param: node: current node
+        :param: trav_list: current list of visited nodes
         :return: List with pre-order traversal
         """
         if trav_list is None:
@@ -228,24 +230,45 @@ class BST:
 
         if node is not None:
             trav_list.append(node.value)
-
             self.pre_order_traversal(node.left, trav_list)
             self.pre_order_traversal(node.right, trav_list)
 
         return trav_list
 
-    def in_order_traversal(self):
+    def in_order_traversal(self, node=None, trav_list=None):
         """
+        :param: node: current node
+        :param: trav_list: current list of visited nodes
         :return: List with in-order traversal of BST
         """
-        pass
+        if trav_list is None:
+            node = self.root
+            trav_list = []
 
-    def post_order_traversal(self):
+        if node is not None:
+            self.in_order_traversal(node.left, trav_list)
+            trav_list.append(node.value)
+            self.in_order_traversal(node.right, trav_list)
+
+        return trav_list
+
+    def post_order_traversal(self, node=None, trav_list=None):
         """
         Returns List containing post-order traversal
+        :param: node: current node
+        :param: trav_list: current list of visited nodes
         :return: List with post-order traversal
         """
-        pass
+        if trav_list is None:
+            node = self.root
+            trav_list = []
+
+        if node is not None:
+            self.post_order_traversal(node.left, trav_list)
+            self.post_order_traversal(node.right, trav_list)
+            trav_list.append(node.value)
+
+        return trav_list
 
     def by_level_traversal(self):
         """
