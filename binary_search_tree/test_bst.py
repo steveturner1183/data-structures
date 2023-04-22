@@ -171,12 +171,14 @@ class TestQue(unittest.TestCase):
         expected = [10, -1, 10, 5, -1]
         actual = tree.by_level_traversal()
         self.assertEqual(expected, actual)
-    """
+
     def test_size(self):
-        pass
+        test_result = self.comprehensive_test("size")
+        self.assertEqual(test_result[0], test_result[1])
 
     def test_height(self):
-        pass
+        test_result = self.comprehensive_test("height")
+        self.assertEqual(test_result[0], test_result[1])
 
     def test_count_leaves(self):
         pass
@@ -188,15 +190,28 @@ class TestQue(unittest.TestCase):
         pass
 
     def test_is_full(self):
-        pass
+        test_result = self.comprehensive_test("full")
+        self.assertEqual(test_result[0], test_result[1])
 
     def test_is_perfect(self):
         pass
 
-    def comprehensive_test(self):
+    def comprehensive_test(self, category):
         tree = BST()
 
-        expected = [
+        test_categories = {
+            "size": [0, tree.size],
+            "height": [1, tree.height],
+            "leaves": [2, tree.count_leaves],
+            "unique": [3, tree.count_unique],
+            "complete": [4, tree.is_complete],
+            "full": [5, tree.is_full],
+            "perfect": [6, tree.is_perfect]
+        }
+
+        test = test_categories[category]
+
+        full_expected = [
          #  Size Height Leaves Unique Complete   Full   Perfect VALUE
             [0,    -1,     0,      0,    True,    True,   True],  # N/A
             [1,     0,     1,      1,    True,    True,   True],  # 10
@@ -212,19 +227,11 @@ class TestQue(unittest.TestCase):
             [11,    3,     6,      11,    True,    True,   False],  # 7
         ]
 
+        expected = [result[test[0]] for result in full_expected]
+
         actual = []
+        actual.append(test[1]())
         for value in [10, 5, 3, 15, 12, 8, 20, 1, 4, 9, 7]:
             tree.add(value)
-            cur_tree = [
-                tree.size(),
-                tree.height(),
-                tree.count_leaves(),
-                tree.count_unique(),
-                tree.is_complete(),
-                tree.is_full(),
-                tree.is_perfect()
-            ]
-            actual.append(cur_tree)
-
-        self.assertEqual(expected, actual)
-        """
+            actual.append(test[1]())
+        return expected, actual

@@ -192,6 +192,8 @@ class BST:
         """
         Removes node by value
         :param value: value to be removed
+        :param parent: Parent of node to be removed
+        :param node: Node to be removed
         :return: None
         """
         if node is None:
@@ -288,49 +290,89 @@ class BST:
 
         return by_level_list
 
-
-
-    def is_full(self):
+    def is_full(self, node=None):
         """
         Returns if the tree is full
         :return: True if full, false if not
         """
-        pass
+        if node is None:
+            return self.is_full(self.root)
+
+        two_children = node.left is not None and node.right is not None
+        no_children = node.left is None and node.left is None
+
+        if no_children:
+            return True
+
+        if two_children:
+            full = self.is_full(node.left)
+            if not full:
+                return False
+            full = self.is_full(node.right)
+            if not full:
+                return False
+            return True
+
+        else:
+            return False
 
     def is_complete(self):
         """
         Returns if the tree is complete
         :return: True if complete, false if not
         """
-        pass
+        return "X"
 
     def is_perfect(self):
         """
         Returns if the tree is perfect
         :return: True if perfect, false if not
         """
-        pass
+        return "X"
 
-    def size(self):
+    def size(self, node=None, tree_size=0):
         """
         :return: size of tree
         """
-        pass
+        if tree_size == 0:
+            node = self.root
+            if node is None:
+                return tree_size
 
-    def height(self) -> int:
+        if node is not None:
+            tree_size += 1
+            tree_size = self.size(node.left, tree_size)
+            tree_size = self.size(node.right, tree_size)
+
+        return tree_size
+
+    def height(self, node=None, tree_height=-1):
         """
         :return: height of tree
         """
-        pass
 
-    def count_leaves(self) -> int:
+        if tree_height == -1:
+            node = self.root
+            if node is None:
+                return tree_height
+
+        if node is not None:
+            tree_height += 1
+            depth_left = self.height(node.left, tree_height)
+            depth_right = self.height(node.right, tree_height)
+            max_depth = max(depth_right, depth_left)
+            tree_height = max(tree_height, max_depth)
+
+        return tree_height
+
+    def count_leaves(self):
         """
         :return: leaves in tree
         """
-        pass
+        return "X"
 
-    def count_unique(self) -> int:
+    def count_unique(self):
         """
         :return: unique values in tree
         """
-        pass
+        return "X"
