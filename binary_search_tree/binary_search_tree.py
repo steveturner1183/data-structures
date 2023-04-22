@@ -21,7 +21,19 @@ class BST:
             for value in start_tree:
                 self.add(value)
 
-    def _swap_node(self, node, parent, new_node=None):
+    ##########################################################################
+    #  Private helper functions                                              #
+    ##########################################################################
+
+    @staticmethod
+    def _swap_node(node, parent, new_node=None):
+        """
+        Helper function to swap one node with another
+        :param node: Node to be replaced
+        :param parent: Parent of node to be replaced
+        :param new_node: New node to replace node with
+        :return: None
+        """
 
         # Assign new node to parent
         if node == parent.left:
@@ -39,7 +51,15 @@ class BST:
 
         return
 
-    def _delete_node(self, node, parent):
+    @staticmethod
+    def _delete_node(node, parent):
+        """
+        Delete a node between two other nodes, i.e. make child of node
+        the new child of the parent
+        :param node: Node to be deleted
+        :param parent: Parent to take on Nodes child as its own child
+        :return:
+        """
         # Find successor for node with single child
         if node.left is not None:
             successor = node.left
@@ -56,25 +76,36 @@ class BST:
 
         return
 
-    def _extract_successor(self, node):
+    @staticmethod
+    def _extract_successor(node):
+        """
+        Find the in order successor of given node and break connection
+        :param node: Node to find in order successor of
+        :return: In or successor with existing connections broken
+        """
         parent = node
         successor = node.right
 
-        while successor.left is not None:
+        while successor.left is not None:  # search for in order successor
             parent = successor
             successor = successor.left
 
-        if successor == parent.left:
+        if successor == parent.left:  # break successors existing connection
             parent.left = successor.right
         if successor == parent.right:
             parent.right = successor.right
 
         return successor
 
+    ##########################################################################
+    #  Public BST functions                                                  #
+    ##########################################################################
+
     def add(self, value, node=None):
         """
         Adds value to bst
         :param value: Value to be added
+        :param node: Current node
         :return: None
         """
         if self.root is None:  # Empty tree, make node the root
@@ -102,6 +133,7 @@ class BST:
         """
         Checks if tree contains node with given value
         :param value: Value to be found
+        :param node: Current node
         :return: True if value is in true, false if not found
         """
         if node is None:  # Starting case
