@@ -275,7 +275,20 @@ class BST:
         Returns List containing by-level traversal
         :return: List with by-level traversal
         """
-        pass
+        by_level_list = []
+        temp_list = [self.root]
+
+        while len(temp_list) > 0:
+            node = temp_list.pop(0)
+
+            if node is not None:
+                by_level_list.append(node.value)  # log visit
+                temp_list.append(node.left)
+                temp_list.append(node.right)
+
+        return by_level_list
+
+
 
     def is_full(self):
         """
