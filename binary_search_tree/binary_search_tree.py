@@ -21,6 +21,56 @@ class BST:
             for value in start_tree:
                 self.add(value)
 
+    def _swap_node(self, node, parent, new_node=None):
+
+        # Assign new node to parent
+        if node == parent.left:
+            parent.left = new_node
+        elif node == parent.right:
+            parent.right = new_node
+
+        if new_node is None:
+            return
+
+        # Assign deleted node's children to new node
+        if new_node != node.right and new_node != node.left:
+            new_node.left = node.left
+            new_node.right = node.right
+
+        return
+
+    def _delete_node(self, node, parent):
+        # Find successor for node with single child
+        if node.left is not None:
+            successor = node.left
+        elif node.right is not None:
+            successor = node.right
+        else:
+            successor = None
+
+        # Assign new node to parent
+        if node == parent.left:
+            parent.left = successor
+        elif node == parent.right:
+            parent.right = successor
+
+        return
+
+    def _extract_successor(self, node):
+        parent = node
+        successor = node.right
+
+        while successor.left is not None:
+            parent = successor
+            successor = successor.left
+
+        if successor == parent.left:
+            parent.left = successor.right
+        if successor == parent.right:
+            parent.right = successor.right
+
+        return successor
+
     def add(self, value, node=None):
         """
         Adds value to bst
@@ -87,7 +137,24 @@ class BST:
         Removes the first value in the BST
         :return: None
         """
-        pass
+        if self.root is None:
+            return False
+
+        elif self.root.left is None and self.root.right is None:
+            self.root = None
+
+        elif self.root.left is not None and self.root.right is None:
+            self.root = self.root.left
+
+        elif self.root.left is None and self.root.right is not None:
+            self.root = self.root.right
+
+        else:
+            successor = self._extract_successor(self.root)
+            successor.left = self.root.left
+            successor.right = self.root.right
+            self.root = successor
+        return self.root
 
     def remove(self, value, parent=None, node=None):
         """
@@ -99,47 +166,24 @@ class BST:
             node = self.root
 
         if node.value == value:  # Node found
+            # Case 1 - No child nodes
             if node.left is None and node.right is None:
-                self._swap_node(node, parent)
-            elif node.left is not None and node.right is None:
-                self._swap_node(node, parent, node.left)
-            elif node.left is None and node.right is not None:
-                self._swap_node(node, parent, node.right)
+                self._delete_node(node, parent)
+
+            # Case 2 - Both children
             elif node.left is not None and node.right is not None:
-                successor = self.in_order_successor(node)
+                successor = self._extract_successor(node)
                 self._swap_node(node, parent, successor)
+
+            # Case 3 - Single Child
+            else:
+                self._delete_node(node, parent)
+
         else:
             if value < node.value:
                 self.remove(value, node, node.left)
             else:
                 self.remove(value, node, node.right)
-
-    def _swap_node(self, node, parent, new_node=None):
-        if node == parent.left:
-            parent.left = new_node
-        elif node == parent.right:
-            parent.right = new_node
-        if new_node is None:
-            return
-        if new_node != node.right and new_node != node.left:
-            new_node.left = node.left
-            new_node.right = node.right
-        return
-
-    def in_order_successor(self, node):
-        parent = node
-        node = node.right
-
-        while node.left is not None:
-            parent = node
-            node = node.left
-
-        if node == parent.left:
-            parent.left = node.right
-        if node == parent.right:
-            parent.right = node.right
-
-        return node
 
     def pre_order_traversal(self, node=None, trav_list=None):
         """
@@ -150,9 +194,7 @@ class BST:
             node = self.root
             trav_list = []
 
-        if node is None:
-            return
-        else:
+        if node is not None:
             trav_list.append(node.value)
 
             self.pre_order_traversal(node.left, trav_list)
