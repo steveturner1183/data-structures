@@ -296,10 +296,13 @@ class BST:
         :return: True if full, false if not
         """
         if node is None:
-            return self.is_full(self.root)
+            if self.root is None:
+                return True
+            else:
+                return self.is_full(self.root)
 
         two_children = node.left is not None and node.right is not None
-        no_children = node.left is None and node.left is None
+        no_children = node.left is None and node.right is None
 
         if no_children:
             return True
@@ -316,19 +319,56 @@ class BST:
         else:
             return False
 
-    def is_complete(self):
+    def is_complete(self, first_left=False):
         """
-        Returns if the tree is complete
+        Returns if the tree is complete. Traverse using by level traversal
+        and search for first left only node. Then check that remaining nodes
+        ore None
         :return: True if complete, false if not
         """
-        return "X"
+        if self.root is None:
+            return True
+
+        temp_list = [self.root]
+
+        while len(temp_list) > 0:
+            node = temp_list.pop(0)
+
+            if first_left is False:
+                if node.left is not None and node.right is not None:
+                    temp_list.append(node.left)
+                    temp_list.append(node.right)
+                elif node.left is not None and node.right is None:
+                    temp_list.append(node.left)
+                    first_left = True
+                elif node.left is None and node.right is not None:
+                    return False
+            else:
+                if node.left is not None or node.right is not None:
+                    return False
+
+        return True
 
     def is_perfect(self):
         """
-        Returns if the tree is perfect
+        Returns if the tree is perfect. Perfect tree is a full tree
+        where 2^h = number of leaves
         :return: True if perfect, false if not
         """
-        return "X"
+        # Empty tree
+        if self.root is None:
+            return True
+
+        # Test if full
+        full = self.is_full()
+        if not full:
+            return False
+
+        # Check leaves on max depth level
+        leaves = self.count_leaves()
+        height = self.height()
+
+        return 2 ** height == leaves
 
     def size(self, node=None, tree_size=0):
         """
@@ -365,14 +405,40 @@ class BST:
 
         return tree_height
 
-    def count_leaves(self):
+    def count_leaves(self, node=None, tree_leaves=-1):
         """
         :return: leaves in tree
         """
-        return "X"
+        if tree_leaves == -1:
+            tree_leaves += 1
+            node = self.root
+            if node is None:
+                return tree_leaves
 
-    def count_unique(self):
+        if node is None:
+            return tree_leaves
+        elif node.left is None and node.right is None:
+            return tree_leaves + 1
+        else:
+            tree_leaves = self.count_leaves(node.left, tree_leaves)
+            tree_leaves = self.count_leaves(node.right, tree_leaves)
+            return tree_leaves
+
+    def count_unique(self, node=None, visited=None):
         """
         :return: unique values in tree
         """
-        return "X"
+        if visited is None:
+            node = self.root
+            visited = []
+            if node is None:
+                return 0
+
+        if node is not None:
+            if node.value not in visited:
+                visited.append(node.value)
+
+            self.count_unique(node.left, visited)
+            self.count_unique(node.right, visited)
+
+        return len(visited)

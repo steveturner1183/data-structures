@@ -181,20 +181,24 @@ class TestQue(unittest.TestCase):
         self.assertEqual(test_result[0], test_result[1])
 
     def test_count_leaves(self):
-        pass
+        test_result = self.comprehensive_test("leaves")
+        self.assertEqual(test_result[0], test_result[1])
 
     def test_count_unique(self):
-        pass
+        test_result = self.comprehensive_test("unique")
+        self.assertEqual(test_result[0], test_result[1])
 
     def test_is_complete(self):
-        pass
+        test_result = self.comprehensive_test("complete")
+        self.assertEqual(test_result[0], test_result[1])
 
     def test_is_full(self):
         test_result = self.comprehensive_test("full")
         self.assertEqual(test_result[0], test_result[1])
 
     def test_is_perfect(self):
-        pass
+        test_result = self.comprehensive_test("perfect")
+        self.assertEqual(test_result[0], test_result[1])
 
     def comprehensive_test(self, category):
         tree = BST()
